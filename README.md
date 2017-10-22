@@ -1,11 +1,16 @@
-# Label-Informed-Attributed-Network-Embedding
+# Label Informed Attributed Network Embedding
 Label Informed Attributed Network Embedding, WSDM 2017
 
 ## Code in MATLAB
+```
 H = LANE_fun(Net,Attri,LabelY,d,alpha1,alpha2,numiter);  
 H = AANE_fun(Net,Attri,d,alpha1,alpha2,numiter);  
+```
 
-H is the joint embedding representation of Net and Attri, where Net is the weighted adjacency matrix, Attri is the attribute information matrix with row denotes nodes, and LabelY is the label information.
+- H is the joint embedding representation of Net and Attri;
+- Net is the weighted adjacency matrix;
+- Attri is the attribute information matrix with row denotes nodes;
+- LabelY is the label information.
  
 ## Reference in BibTeX:
 @conference{Huang-etal17Label,  
