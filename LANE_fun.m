@@ -68,7 +68,7 @@ end
 end
 
     function LapX = norLap(InpX)
-    % Compute normalized graph Laplacian of InpX
+    % Compute the normalized graph Laplacian of InpX
         InpX = InpX'; % Transpose for speedup
         InpX = bsxfun(@rdivide,InpX,sum(InpX.^2).^.5); % Normalize
         InpX(isnan(InpX)) = 0;
