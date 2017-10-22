@@ -35,7 +35,7 @@ Y=Y*1;
 
 Indices = crossvalind('Kfold',n,20); % 5-fold cross-validation indices
 Group1 = find(Indices <= 8); % 1 for 1/16, 2 for 1/8, 4 for 1/4, 16 for 100% of training group
-Group2 = find(Indices >= 17); % test group
+Group2 = find(Indices >= 17); % test group, test each fold in turns
 %% Training group
 G1 = sparse(G(Group1,Group1)); % network of nodes in the training group
 A1 = sparse(A(Group1,:)); % node attributes of nodes in the training group
