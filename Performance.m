@@ -74,7 +74,6 @@ function [micro, macro] = micro_macro_PR(pred_label,orig_label)
 %     macro.precision = mean(macroP);
 %     macro.recall = mean(macroR);
     macro.fscore = mean(macroF);
-
     micro.precision = sum(macroTP)/(sum(macroTP)+sum(macroFP));
     micro.recall = sum(macroTP)/(sum(macroTP)+sum(macroFN));
     micro.fscore = 2*micro.precision*micro.recall/(micro.precision+micro.recall);
