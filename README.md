@@ -9,7 +9,7 @@ H = AANE_fun(Net,Attri,d,alpha1,alpha2,numiter);
 
 - H is the joint embedding representation of Net and Attri;
 - Net is the weighted adjacency matrix;
-- Attri is the attribute information matrix with row denotes nodes;
+- Attri is the node attribute information matrix with row denotes nodes;
 - LabelY is the label information.
  
 ## Reference in BibTeX:
