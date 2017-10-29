@@ -34,7 +34,7 @@ end
 Y=Y*1;
 
 Indices = crossvalind('Kfold',n,20); % 5-fold cross-validation indices
-Group1 = find(Indices <= 8); % 1 for 1/16, 2 for 1/8, 4 for 1/4, 16 for 100% of training group
+Group1 = find(Indices <= 16); % 1 for 1/16, 2 for 1/8, 4 for 1/4, 16 for 100% of training group
 Group2 = find(Indices >= 17); % test group, test each fold in turns
 %% Training group
 G1 = sparse(G(Group1,Group1)); % network of nodes in the training group
@@ -46,7 +46,7 @@ GC1 = sparse(G(Group1,:)); % For constructing test representation H2
 GC2 = sparse(G(Group2,:)); % For constructing test representation H2
 
 %% Label Informed Attributed Network Embedding (Supervised)
-disp('Label informed Attributed Network Embedding (LANE), 5-fold with 50% of training is used:')
+disp('Label informed Attributed Network Embedding (LANE), 5-fold with 100% of training is used:')
 H1 = LANE_fun(G1,A1,Y1,d,alpha1,alpha2,numiter); % representation of training group
 H2 = delta1*(GC2*pinv(pinv(H1)*GC1))+delta2*(A2*pinv(pinv(H1)*A1)); % representation of test group
 [F1macro1,F1micro1] = Performance(H1,H2,Label(Group1,:),Label(Group2,:)) %
