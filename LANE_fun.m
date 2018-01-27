@@ -18,6 +18,7 @@ n = size(Net,1);
 LG = norLap(Net); % Normalized Network Laplacian
 LA = norLap(Attri); % Normalized Node Attributes Laplacian
 UAUAT = zeros(n,n); % UA*UA^T
+opts.disp = 0;
 
 if isempty(varargin)
     %% Unsupervised attriuted network embedding
@@ -30,15 +31,15 @@ if isempty(varargin)
     for i = 1:numiter
         HHT = H*H';
         TotalLG1 = LG+beta2*UAUAT+HHT;
-        [UG,~] = eigs(.5*(TotalLG1+TotalLG1'),d);
+        [UG,~] = eigs(.5*(TotalLG1+TotalLG1'),d,'LA',opts);
         UGUGT = UG*UG';
         
         TotalLA = beta1*LA+beta2*UGUGT+HHT;
-        [UA,~] = eigs(.5*(TotalLA+TotalLA'),d);
+        [UA,~] = eigs(.5*(TotalLA+TotalLA'),d,'LA',opts);
         UAUAT = UA*UA';
         
         TotalLH = UAUAT+UGUGT;
-        [H,~] = eigs(.5*(TotalLH+TotalLH'),d);
+        [H,~] = eigs(.5*(TotalLH+TotalLH'),d,'LA',opts);
     end
 else
     %% Supervised attriuted network embedding
@@ -50,19 +51,19 @@ else
     for i = 1:numiter
         HHT = H*H';
         TotalLG1 = LG+alpha1*UAUAT+alpha2*UYUYT+HHT;
-        [UG,~] = eigs(.5*(TotalLG1+TotalLG1'),d);
+        [UG,~] = eigs(.5*(TotalLG1+TotalLG1'),d,'LA',opts);
         UGUGT = UG*UG';
         
         TotalLA = alpha1*(LA+UGUGT)+HHT;
-        [UA,~] = eigs(.5*(TotalLA+TotalLA'),d);
+        [UA,~] = eigs(.5*(TotalLA+TotalLA'),d,'LA',opts);
         UAUAT = UA*UA';
         
         TotalLY = alpha2*(LY+UGUGT)+HHT;
-        [UY,~] = eigs(.5*(TotalLY+TotalLY'),d);
+        [UY,~] = eigs(.5*(TotalLY+TotalLY'),d,'LA',opts);
         UYUYT = UY*UY';
         
         TotalLH = UAUAT+UGUGT+UYUYT;
-        [H,~] = eigs(.5*(TotalLH+TotalLH'),d);
+        [H,~] = eigs(.5*(TotalLH+TotalLH'),d,'LA',opts);
     end
 end
 end
