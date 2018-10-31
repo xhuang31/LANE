@@ -33,7 +33,7 @@ for n_Label_i = 1:length(LabelIdx)
 end
 Y=Y*1;
 
-Indices = crossvalind('Kfold',n,20); % 5-fold cross-validation indices
+Indices = randi(20,n,1); % 5-fold cross-validation indices
 Group1 = find(Indices <= 16); % 1 for 1/16, 2 for 1/8, 4 for 1/4, 16 for 100% of training group
 Group2 = find(Indices >= 17); % test group, test each fold in turns
 %% Training group
